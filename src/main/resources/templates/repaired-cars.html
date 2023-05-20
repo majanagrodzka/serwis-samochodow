@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Car Workshop - Pojazdy naprawione</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<nav>
+  <ul>
+    <li><a href="/">Pojazdy do naprawy</a></li>
+    <li><a href="/add">Dodaj nowy pojazd</a></li>
+    <li><a href="/repair">Napraw pojazd</a></li>
+    <li><a href="/repaired">Pojazdy naprawione</a></li>
+  </ul>
+</nav>
+
+<h1>Car Workshop</h1>
+<h2>Pojazdy naprawione</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Numer rejestracyjny</th>
+    <th>Nazwa samochodu</th>
+    <th>Kolor</th>
+    <th>Rocznik</th>
+    <th>Data przyjęcia do serwisu</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="car : ${cars}">
+    <td th:text="${car.registrationNumber}"></td>
+    <td th:text="${car.name}"></td>
+    <td th:text="${car.color}"></td>
+    <td th:text="${car.year}"></td>
+    <td th:text="${car.entryDate}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
