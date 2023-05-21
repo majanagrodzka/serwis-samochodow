@@ -1,7 +1,8 @@
-package com.serwis.serwissamochodowy;
+package com.serwis.serwissamochodowy.filehandler;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.serwis.serwissamochodowy.model.Car;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +17,6 @@ public class FileIOUtils {
             file.createNewFile();
             return List.of();
         }
-
         if (filePath.toLowerCase().endsWith(".json")) {
             return JSON_MAPPER.readValue(file, new TypeReference<>() {});
         } else {
@@ -29,7 +29,6 @@ public class FileIOUtils {
         if (!file.exists()) {
             file.createNewFile();
         }
-
         if (filePath.toLowerCase().endsWith(".json")) {
             JSON_MAPPER.writeValue(file, cars);
         } else {

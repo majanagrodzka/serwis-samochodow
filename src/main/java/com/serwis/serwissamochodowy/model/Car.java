@@ -1,12 +1,22 @@
-package com.serwis.serwissamochodowy;
+package com.serwis.serwissamochodowy.model;
+
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.serwis.serwissamochodowy.filehandler.LocalDateDeserializer;
+import com.serwis.serwissamochodowy.filehandler.LocalDateSerializer;
 
 import java.time.LocalDate;
 
 public class Car {
+
     private String registrationNumber;
     private String name;
     private String color;
     private int year;
+
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate entryDate;
     private boolean isFixed;
 

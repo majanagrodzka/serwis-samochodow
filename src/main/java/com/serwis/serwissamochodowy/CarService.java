@@ -1,5 +1,7 @@
 package com.serwis.serwissamochodowy;
 
+import com.serwis.serwissamochodowy.filehandler.FileIOUtils;
+import com.serwis.serwissamochodowy.model.Car;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,7 @@ public class CarService {
     private final List<Car> activeCars;
     private final String dataFilePath;
 
-    public CarService(@Value("${serwissamochodowy.datafile.path}") String dataFilePath) {
+    public CarService(@Value("${ss.datafile.path}") String dataFilePath) {
         this.activeCars = new ArrayList<>();
         this.dataFilePath = dataFilePath;
         loadCarsFromFile();
@@ -40,14 +42,6 @@ public class CarService {
         }
     }
 
-    public Car getCarByRegistrationNumber(String registrationNumber) {
-        for (Car car : activeCars) {
-            if (car.getRegistrationNumber().equals(registrationNumber)) {
-                return car;
-            }
-        }
-        return null;
-    }
     public List<Car> getCarsToRepair() {
         List<Car> carsToRepair = new ArrayList<>();
         for (Car car : activeCars) {
@@ -57,7 +51,6 @@ public class CarService {
         }
         return carsToRepair;
     }
-
 
     public List<Car> getRepairedCars() {
         return activeCars.stream()

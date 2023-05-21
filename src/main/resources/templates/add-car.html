@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Car Workshop - Dodaj nowy pojazd</title>
+    <title>Dodaj nowy pojazd</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <nav>
@@ -14,7 +16,7 @@
     </ul>
 </nav>
 
-<h1>Car Workshop</h1>
+<h1>Serwis Samochodów</h1>
 <h2>Dodaj nowy pojazd</h2>
 <form method="post" th:action="@{/add}">
     <label for="registrationNumber">Numer rejestracyjny:</label>
@@ -30,9 +32,6 @@
     <select id="year" name="year" th:field="${car.year}" required>
         <option th:each="year : ${yearsList}" th:value="${year}" th:text="${year}"></option>
     </select>
-
-    <label for="entryDate">Data przyjęcia do serwisu:</label>
-    <input type="text" id="entryDate" name="entryDate" th:field="${car.entryDate}" readonly />
 
     <button type="submit">Dodaj</button>
 </form>

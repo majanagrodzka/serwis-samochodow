@@ -1,5 +1,7 @@
-package com.serwis.serwissamochodowy;
+package com.serwis.serwissamochodowy.controller;
 
+import com.serwis.serwissamochodowy.CarService;
+import com.serwis.serwissamochodowy.model.Car;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,14 +23,14 @@ public class CarController {
 
     @GetMapping("/")
     public String showActiveCars(Model model) {
-        model.addAttribute("cars", carService.getActiveCars());
+        List<Car> carsToRepair = carService.getCarsToRepair();
+        model.addAttribute("cars", carsToRepair);
         return "index";
     }
     @GetMapping("/add")
     public String showAddCarForm(Model model) {
         model.addAttribute("car", new Car());
 
-        // Generowanie listy lat
         List<Integer> yearsList = new ArrayList<>();
         int currentYear = Year.now().getValue();
         for (int year = currentYear; year >= 1900; year--) {
@@ -46,6 +48,7 @@ public class CarController {
         return "redirect:/";
     }
 
+
     @GetMapping("/repaired")
     public String showRepairedCars(Model model) {
         model.addAttribute("cars", carService.getRepairedCars());
@@ -54,14 +57,15 @@ public class CarController {
     @GetMapping("/repair")
     public String showCarsToRepair(Model model) {
         List<Car> carsToRepair = carService.getCarsToRepair();
-        model.addAttribute("carsToRepair", carsToRepair);
+        model.addAttribute("cars", carsToRepair);
         return "repair-car";
     }
+
 
     @PostMapping("/repair/{registrationNumber}")
     public String repairCar(@PathVariable String registrationNumber) {
         carService.repairCar(registrationNumber);
-        return "redirect:/repaired";
+        return "redirect:/";
     }
 }
 

@@ -2,10 +2,48 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Car Workshop - Repair Car</title>
+    <title>Napraw pojazd</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+
 </head>
 <body>
-<h1>Repair Car</h1>
+<nav>
+    <ul>
+        <li><a href="/">Pojazdy do naprawy</a></li>
+        <li><a href="/add">Dodaj nowy pojazd</a></li>
+        <li><a href="/repair">Napraw pojazd</a></li>
+        <li><a href="/repaired">Pojazdy naprawione</a></li>
+    </ul>
+</nav>
 
+<h1>Serwis Samochodów</h1>
+<h2>Napraw pojazd</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Numer rejestracyjny</th>
+        <th>Nazwa samochodu</th>
+        <th>Kolor</th>
+        <th>Rocznik</th>
+        <th>Data przyjęcia do serwisu</th>
+        <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${cars}">
+        <td th:text="${car.registrationNumber}"></td>
+        <td th:text="${car.name}"></td>
+        <td th:text="${car.color}"></td>
+        <td th:text="${car.year}"></td>
+        <td th:text="${car.entryDate}"></td>
+        <td>
+            <form method="post" th:action="@{/repair/{registrationNumber}(registrationNumber=${car.registrationNumber})}">
+                <button type="submit">Napraw</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
