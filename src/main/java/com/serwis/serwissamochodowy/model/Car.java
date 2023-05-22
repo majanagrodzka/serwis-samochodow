@@ -32,13 +32,24 @@ public class Car {
         this.isFixed = isFixed;
     }
 
+    public void setRegistrationNumber(String registrationNumber) {
+        if (registrationNumber != null) {
+            String cleanedRegistrationNumber = registrationNumber.replaceAll("[^A-Za-z0-9]", "").toUpperCase();
+
+            if (cleanedRegistrationNumber.length() != 7) {
+                throw new IllegalArgumentException("Registration number must have exactly 7 characters.");
+            }
+
+            this.registrationNumber = cleanedRegistrationNumber;
+        } else {
+            throw new IllegalArgumentException("Registration number cannot be null.");
+        }
+    }
+
     public String getRegistrationNumber() {
         return registrationNumber;
     }
 
-    public void setRegistrationNumber(String registrationNumber) {
-        this.registrationNumber = registrationNumber;
-    }
 
     public String getName() {
         return name;

@@ -18,15 +18,20 @@
 
 <h1>Serwis Samochodów</h1>
 <h2>Dodaj nowy pojazd</h2>
-<form method="post" th:action="@{/add}">
-    <label for="registrationNumber">Numer rejestracyjny:</label>
-    <input type="text" id="registrationNumber" name="registrationNumber" th:field="${car.registrationNumber}" required />
+<form method="post" th:action="@{/add}" th:object="${car}">
+    <div>
+        <label for="registrationNumber">Numer rejestracyjny:</label>
+        <input type="text" id="registrationNumber" name="registrationNumber" th:field="*{registrationNumber}" required/>
+        <p th:if="${#fields.hasErrors('registrationNumber')}" class="error" th:errors="*{registrationNumber}">
+            <span th:each="error : ${#fields.errors('registrationNumber')}"></span>
+        </p>
 
+    </div>
     <label for="name">Nazwa samochodu:</label>
-    <input type="text" id="name" name="name" th:field="${car.name}" required />
+    <input type="text" id="name" name="name" th:field="${car.name}" required/>
 
     <label for="color">Kolor:</label>
-    <input type="text" id="color" name="color" th:field="${car.color}" required />
+    <input type="text" id="color" name="color" th:field="${car.color}" required/>
 
     <label for="year">Rocznik:</label>
     <select id="year" name="year" th:field="${car.year}" required>

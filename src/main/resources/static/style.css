@@ -102,3 +102,7 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #800000;
 }
+.error {
+    color: #650000;
+    font-weight: bold;
+}
