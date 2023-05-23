@@ -21,9 +21,9 @@
 <form method="post" th:action="@{/add}" th:object="${car}">
     <div>
         <label for="registrationNumber">Numer rejestracyjny:</label>
-        <input type="text" id="registrationNumber" name="registrationNumber" th:field="*{registrationNumber}" required/>
-        <p th:if="${#fields.hasErrors('registrationNumber')}" class="error" th:errors="*{registrationNumber}">Incorrect registration num</p>
-
+        <input type="text" id="registrationNumber" name="registrationNumber" th:field="${car.registrationNumber}" required/>
+        <p th:if="${#fields.hasErrors('registrationNumber')}" class="error" th:errors="*{registrationNumber}">Invalid registration number: <span th:text="${#fields.errors}"></span>
+        </p>
     </div>
     <label for="name">Nazwa samochodu:</label>
     <input type="text" id="name" name="name" th:field="${car.name}" required/>

@@ -2,10 +2,10 @@ package com.serwis.serwissamochodowy.controller;
 
 import com.serwis.serwissamochodowy.CarService;
 import com.serwis.serwissamochodowy.model.Car;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +29,7 @@ public class CarController {
         model.addAttribute("cars", carsToRepair);
         return "index";
     }
+
     @GetMapping("/add")
     public String showAddCarForm(Model model) {
         model.addAttribute("car", new Car());
@@ -45,12 +46,15 @@ public class CarController {
     }
 
     @PostMapping("/add")
-    public String addCar(Car car, BindingResult bindingResult) {
+    public String addCar(@Valid Car car, BindingResult bindingResult, IllegalArgumentException e) {
         car.setEntryDate(LocalDate.now());
         if (bindingResult.hasErrors()) {
-            return "add-car";
+                bindingResult.rejectValue("registrationNumber", "error.registrationNumber", e.getMessage());
+                return "add-car";
         }
-        carService.addCar(car);
+            carService.addCar(car);
+
+
         return "redirect:/";
     }
 
@@ -60,6 +64,7 @@ public class CarController {
         model.addAttribute("cars", carService.getRepairedCars());
         return "repaired-cars";
     }
+
     @GetMapping("/repair")
     public String showCarsToRepair(Model model) {
         List<Car> carsToRepair = carService.getCarsToRepair();

@@ -1,8 +1,8 @@
 [ {
-  "registrationNumber" : null,
-  "name" : "fdshbfdb",
+  "registrationNumber" : "2222223",
+  "name" : "xxxxxxxx",
   "color" : "hdfhfhd",
   "year" : 2023,
   "entryDate" : "2023-05-23",
-  "fixed" : false
+  "fixed" : true
 } ]
