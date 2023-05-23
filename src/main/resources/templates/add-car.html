@@ -22,9 +22,7 @@
     <div>
         <label for="registrationNumber">Numer rejestracyjny:</label>
         <input type="text" id="registrationNumber" name="registrationNumber" th:field="*{registrationNumber}" required/>
-        <p th:if="${#fields.hasErrors('registrationNumber')}" class="error" th:errors="*{registrationNumber}">
-            <span th:each="error : ${#fields.errors('registrationNumber')}"></span>
-        </p>
+        <p th:if="${#fields.hasErrors('registrationNumber')}" class="error" th:errors="*{registrationNumber}">Incorrect registration num</p>
 
     </div>
     <label for="name">Nazwa samochodu:</label>

@@ -1,7 +1,9 @@
 package com.serwis.serwissamochodowy.filehandler;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.serwis.serwissamochodowy.model.Car;
 
 import java.io.File;
@@ -30,7 +32,8 @@ public class FileIOUtils {
             file.createNewFile();
         }
         if (filePath.toLowerCase().endsWith(".json")) {
-            JSON_MAPPER.writeValue(file, cars);
+            ObjectWriter writer = JSON_MAPPER.writer(new DefaultPrettyPrinter());
+            writer.writeValue(file, cars);
         } else {
             throw new IllegalArgumentException("Unsupported file format: " + filePath);
         }

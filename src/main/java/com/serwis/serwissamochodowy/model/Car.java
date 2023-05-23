@@ -10,6 +10,7 @@ import java.time.LocalDate;
 
 public class Car {
 
+
     private String registrationNumber;
     private String name;
     private String color;
@@ -37,12 +38,11 @@ public class Car {
             String cleanedRegistrationNumber = registrationNumber.replaceAll("[^A-Za-z0-9]", "").toUpperCase();
 
             if (cleanedRegistrationNumber.length() != 7) {
-                throw new IllegalArgumentException("Registration number must have exactly 7 characters.");
+                throw new IllegalArgumentException("Musi mieć 7 znaków");
             }
-
             this.registrationNumber = cleanedRegistrationNumber;
         } else {
-            throw new IllegalArgumentException("Registration number cannot be null.");
+            throw new IllegalArgumentException("Nie może być nullem");
         }
     }
 
