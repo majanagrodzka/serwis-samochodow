@@ -35,10 +35,6 @@
     <td th:text="${car.color}"></td>
     <td th:text="${car.year}"></td>
     <td th:text="${car.entryDate}"></td>
-    <td>
-      <form method="post" th:action="@{/repair/{registrationNumber}(registrationNumber=${car.registrationNumber})}">
-      </form>
-    </td>
   </tr>
   </tbody>
 </table>

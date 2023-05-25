@@ -34,16 +34,11 @@ public class Car {
     }
 
     public void setRegistrationNumber(String registrationNumber) {
-        if (registrationNumber != null) {
             String cleanedRegistrationNumber = registrationNumber.replaceAll("[^A-Za-z0-9]", "").toUpperCase();
-
             if (cleanedRegistrationNumber.length() != 7) {
                 throw new IllegalArgumentException("Musi mieć 7 znaków");
             }
             this.registrationNumber = cleanedRegistrationNumber;
-        } else {
-            throw new IllegalArgumentException("Nie może być nullem");
-        }
     }
 
     public String getRegistrationNumber() {

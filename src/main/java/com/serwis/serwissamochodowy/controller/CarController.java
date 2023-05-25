@@ -49,12 +49,10 @@ public class CarController {
     public String addCar(@Valid Car car, BindingResult bindingResult, IllegalArgumentException e) {
         car.setEntryDate(LocalDate.now());
         if (bindingResult.hasErrors()) {
-                bindingResult.rejectValue("registrationNumber", "error.registrationNumber", e.getMessage());
-                return "add-car";
+            bindingResult.rejectValue("registrationNumber", "error.registrationNumber", e.getMessage());
+            return "add-car";
         }
-            carService.addCar(car);
-
-
+        carService.addCar(car);
         return "redirect:/";
     }
 
